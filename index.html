@@ -14110,6 +14110,11 @@ const TRAINER_ARCH = {
 };
 // sexes each trainer class has in the main-series games ('M', 'F' or 'MF')
 const ARCH_GENDER = { youngster: 'M', bugcatcher: 'M', lass: 'F', hiker: 'M', fisherman: 'M', swimmer: 'MF', birdkeeper: 'MF', blackbelt: 'M', psychic: 'MF', hexmaniac: 'F', scientist: 'MF', firebreather: 'M', gardener: 'MF', skier: 'MF', dragontamer: 'M', beauty: 'F', gentleman: 'M', punk: 'MF', grunt: 'MF', breeder: 'MF', ranger: 'MF', nurse: 'F', ruinmaniac: 'M', acetrainer: 'MF', gymleader: 'MF' };
+// English names, used when the app is in English
+const TRAINER_NAMES_EN = {
+  M: ['James', 'Oliver', 'Henry', 'Jack', 'Thomas', 'William', 'Daniel', 'Samuel', 'Ethan', 'Lucas', 'Benjamin', 'Noah', 'Owen', 'Leo', 'Max', 'Charlie', 'George', 'Arthur', 'Ryan', 'Nathan'],
+  F: ['Emily', 'Olivia', 'Grace', 'Lily', 'Chloe', 'Sophie', 'Hannah', 'Amelia', 'Ella', 'Mia', 'Ruby', 'Isla', 'Lucy', 'Holly', 'Rose', 'Zoe', 'Abigail', 'Evie', 'Megan', 'Alice'],
+};
 const TRAINER_NAMES = {
   M: ['Luca', 'Marco', 'Davide', 'Matteo', 'Andrea', 'Simone', 'Federico', 'Riccardo', 'Tommaso', 'Lorenzo', 'Nicola', 'Pietro', 'Stefano', 'Gabriele', 'Filippo', 'Alessandro', 'Giovanni', 'Emanuele', 'Francesco', 'Leonardo'],
   F: ['Giulia', 'Sara', 'Chiara', 'Elena', 'Martina', 'Alice', 'Sofia', 'Anna', 'Giorgia', 'Irene', 'Beatrice', 'Camilla', 'Valentina', 'Noemi', 'Aurora', 'Francesca', 'Ilaria', 'Federica', 'Greta', 'Ludovica'],
@@ -14132,7 +14137,7 @@ function generateTrainer(rank, opts = {}) {
   s.rank = rank; s.age = opts.age || arch[6];
   const allowed = ARCH_GENDER[opts.arch] || 'MF';
   s.gender = opts.gender && allowed.includes(opts.gender) ? opts.gender : allowed.length === 1 ? allowed : (Math.random() < .5 ? 'M' : 'F');
-  s.name = opts.name || pick(TRAINER_NAMES[s.gender]);
+  s.name = opts.name || pick((LANG === 'en' ? TRAINER_NAMES_EN : TRAINER_NAMES)[s.gender] || TRAINER_NAMES.M);
   s.concept = arch[0];
   s.nature = pick(D.natures).n;
   s.goals = goalsFor(rank); s.goalsRank = rank;
@@ -19255,18 +19260,7 @@ const FLED_DONE = new Set();
 const ICE = [{ urls: 'stun:stun.l.google.com:19302' }, { urls: 'stun:stun1.l.google.com:19302' }];
 const b64u = u8 => { let s = ''; for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000)); return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
 const unb64u = s => { s = s.replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '='; const b = atob(s), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; };
-// smaller codes (and QR codes): drop SDP lines a data channel doesn't need and TCP candidates
-function slimSdp(sdp) {
-  const keep = /^(v=|o=|s=|t=|c=|m=|a=(group|ice-ufrag|ice-pwd|fingerprint|setup|mid|sctp-port|max-message-size|end-of-candidates)|a=candidate:)/;
-  let n = 0;
-  return sdp.split(/\r?\n/).filter(l => {
-    if (!keep.test(l)) return false;
-    if (l.startsWith('a=candidate:')) { if (/ tcp /i.test(l) || ++n > 6) return false; }
-    return true;
-  }).join('\r\n') + '\r\n';
-}
 async function packCode(obj) {
-  if (obj && obj.sdp) obj = Object.assign({}, obj, { sdp: slimSdp(obj.sdp) });
   const txt = JSON.stringify(obj);
   if (window.CompressionStream) {
     const st = new Blob([txt]).stream().pipeThrough(new CompressionStream('deflate-raw'));

@@ -1,6 +1,6 @@
 // Pokérole Companion: keeps the app on the device so it opens without internet.
 // The page is fetched fresh when online (so a new upload is picked up), the saved copy is used offline.
-const CACHE = 'prc-4f7ae61e3c';
+const CACHE = 'prc-1cd6d8bd12';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
