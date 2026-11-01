@@ -21,6 +21,12 @@ PLAY TOGETHER
 
 ## License
 The app's source code is released under the MIT License.
+
+### Third-party libraries
+- [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator) by Kazuhiko Arase, used to create QR codes. MIT License.
+- [jsQR](https://github.com/cozmo/jsQR) by Cosmo Wolfe, used to read QR codes with the camera. Apache License 2.0.
+
+### Game assets
 Pokémon names, sprites, region maps and badge images are © Nintendo / Game Freak / The Pokémon Company.
 Pokérole game content belongs to its respective authors.
 These assets are not covered by the MIT License and are used here in a non-commercial fan project.
