@@ -1,8 +1,8 @@
 {
   "name": "Pokérole Companion",
   "short_name": "Pokérole",
-  "description": "Schede, Pokédex, battaglie e tavolo per Pokérole 3.0",
-  "lang": "it",
+  "description": "Sheets, Pokédex, battles and a shared table for Pokérole 3.0",
+  "lang": "en",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
