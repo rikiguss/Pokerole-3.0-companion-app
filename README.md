@@ -1,2 +1,21 @@
-# Pokerole-3.0-companion-app
-Your Pokérole 3.0 adventure in one app: manage, create (even automatically) trainers and Pokémon, run battles and invite your party to the table with a single link. Install it on PC, Android or iPhone. It works offline and needs no account. In Italian and English.
+# Pokérole Companion
+
+Companion app for playing Pokérole 3.0, in Italian with an English option.
+
+- Trainer and Pokémon sheets with automatic calculations, bag, shop, badges and achievements
+- Searchable Pokédex, moves, abilities and items
+- Pokémon and trainer generator
+- Battles with initiative, dice rolls, damage and effects
+- Shared table: the GM invites players with a link, no accounts and no server needed
+- Multiple campaigns, each with its own sheets
+- PDF and JSON export
+
+**How to use it:** open the site link and install it from the browser menu ("Install app"; on iPhone tap Share → "Add to Home Screen"). It works offline and saves your sheets on your device.
+
+## License
+The app's source code is released under the MIT License.
+Pokémon names, sprites, region maps and badge images are © Nintendo / Game Freak / The Pokémon Company.
+Pokérole game content belongs to its respective authors.
+These assets are not covered by the MIT License and are used here in a non-commercial fan project.
+
+*Unofficial fan project, not affiliated with Nintendo, The Pokémon Company or the authors of Pokérole.*
