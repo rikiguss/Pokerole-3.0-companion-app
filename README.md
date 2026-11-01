@@ -12,6 +12,13 @@ Companion app for playing Pokérole 3.0, in Italian with an English option.
 
 **How to use it:** open the site link and install it from the browser menu ("Install app"; on iPhone tap Share → "Add to Home Screen"). It works offline and saves your sheets on your device.
 
+PLAY TOGETHER
+- The GM opens the app (Master role); each player opens it and picks "Player" in Table.
+- The GM presses "Invite" next to the player and sends the link with "Share invite".
+- The player opens the link, presses "Send the reply" and sends it back.
+- The GM opens the reply on their device (or pastes it in Table): connected.
+- Each new session needs a new invite per player (sheets stay saved).
+
 ## License
 The app's source code is released under the MIT License.
 Pokémon names, sprites, region maps and badge images are © Nintendo / Game Freak / The Pokémon Company.
