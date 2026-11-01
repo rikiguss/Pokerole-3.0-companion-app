@@ -1,4 +1,4 @@
-# Pokérole Companion
+# Pokérole 3.0 Companion app
 
 Companion app for playing Pokérole 3.0, in Italian with an English option.
 
